@@ -1,0 +1,301 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  
+  <title>Towards Efficient and Scale-Robust Ultra-High-Definition Image Demoireing</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <script src="js/modernizr.js"></script>
+  <meta name="viewport" content="width=device-width initial-scale=0.9">
+
+  <script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	
+	  ga('create', 'UA-105303874-1', 'auto');
+	  ga('send', 'pageview');
+  </script>
+  
+  <body style='-webkit-text-size-adjust: 100%; margin:0; background-image: linear-gradient(#49615d8c, #49615d8c);'>
+  
+    <div class="jumbotron jumbotron-fluid bg-dark banner">
+      <div class="container text-white">
+        
+        <div class="page-heading">
+          <h1>Towards Efficient and Scale-Robust Ultra-High-Definition Image Demoireing (ECCV 2022)</h1>
+          
+          <span class="page-subheading"><p>
+            Xin Yu · 
+            Peng Dai ·
+            <a href="https://scholar.google.com/citations?user=foGn_TIAAAAJ&hl=en" target="_Blank">Wenbo Li</a> · 
+            Lan Ma ·
+            Jiajun shen ·
+            Jia Li ·
+            <a href="https://scholar.google.com/citations?user=bGn0uacAAAAJ&hl=en" target="_Blank">Xiaojuan Qi</a>
+          </p>
+          </span>
+
+          <span class="page-subheading">
+            <a href="https://drive.google.com/drive/folders/1DyA84UqM7zf3CeoEBNmTi_dJ649x2e7e?usp=sharing " target="_Blank" class="btn">Dataset</a>
+            <a href="---" class="btn">Code (Coming soon)</a>
+            <a href="---" class="btn">Paper (Coming soon)</a>
+            
+            </span>
+    
+        </div>
+        
+        <hr/>
+
+        <p></p>
+        <span class="section">Introduction</span>
+        <span class="page-word">
+
+        <p>
+          When photographing the contents displayed on the digital screen, an inevitable
+          frequency aliasing between the camera’s color filter array (CFA) and the screen’s
+          LCD subpixel widely exists. The captured images are thus mixed with colorful
+          stripes, named moire patterns, which severely degrade images’ perceptual qualities. Although a plethora of dedicated demoire methods have been proposed in the research community recently, yet is still far from achieving promising results in the real-world scenes.
+
+          The key limitation of these methods is that they all only conduct research on low-resolution or synthetic images. However, with the rapid development of mobile devices, modern widely-used mobile phones typically allow users to capture 4K resolution (i.e.,ultra-high-definition) images, and thus the effectiveness of these methods on this practical scenes is not promised. 
+          
+          In this work, we explore moire pattern removal for ultra-high-definition images.
+          First, we propose the first ultra-high-definition demoireing dataset
+          (UHDM), which contains 5,000 real-world 4K resolution image pair, and
+          conduct a benchmark study on the current state of the art. Then, we analyze limitations of the state of the art and summarize the key issue of them, i.e., not scale-robust. To address their deficiencies, we deliver a plug-and-play semantic-aligned scale-aware module which helps us to build a frustratingly simple baseline model for tackling 4K moire images. Our framework is easy to implement and fast for inference, achieving state-of-the-art results on four demoireing datasets while being much more lightweight. We hope our investigation could inspire more future research in this more practical setting in image demoireing.
+          
+          
+        <br />
+        </p>
+        </span>
+
+        <hr/>
+      <p></p>
+        <span class="section">Visualizations</span>
+        <span class="page-word">
+        <p> We show the visual results of our demoireing methods when applied to full 4K resolution images from mobile phones (i.e., 4032x3024~4624x3472) below. It should be noted that the default test setting in our benchmark is processing center-cropped images at a standard 4K resolution (3840x2160). But since our method is lightweight which is tolerant to the full 4K images, we present the results in full 4K scenes here. To play with the demo, click the button in the middle of each image and slide it to the right. For results on other datasets, you are welcome to check our paper, or try our code directly. 
+          <br />
+        </p>
+      </span>
+
+        <div id="demo">
+
+          <figure class="cd-uhdimage-container">
+            <img src="images/uhdm/moire/0225_moire.jpg" alt="Original Image">
+            <span class="cd-image-label" data-type="original">Moire Image</span>
+            
+            <div class="cd-resize-img">
+              <img src="images/uhdm/ours/test_0225_moire.jpg" alt="Modified Image">
+              <span class="cd-image-label" data-type="modified">Our Result</span>
+            </div>
+            
+            <span class="cd-handle cd-first"></span>
+          </figure>
+          
+      
+          <figure class="cd-uhdimage-container">
+          
+            <img src="images/uhdm/moire/0002_moire.jpg" alt="Original Image">
+            <span class="cd-image-label" data-type="original">Moire Image</span>
+            
+            <div class="cd-resize-img">
+              <img src="images/uhdm/ours/test_0002_moire.jpg" alt="Modified Image">
+              <span class="cd-image-label" data-type="modified">Our Result</span>
+            </div>
+            
+            <span class="cd-handle cd-first"></span>
+          
+          </figure>
+
+          <figure class="cd-uhdimage-container">
+            <img src="images/uhdm/moire/0016_moire.jpg" alt="Original Image">
+            <span class="cd-image-label" data-type="original">Moire Image</span>
+            
+            <div class="cd-resize-img">
+              <img src="images/uhdm/ours/test_0016_moire.jpg" alt="Modified Image">
+              <span class="cd-image-label" data-type="modified">Our Result</span>
+            </div>
+            
+            <span class="cd-handle cd-first"></span>
+          </figure>
+          
+          
+          <figure class="cd-uhdimage-container">
+            <img src="images/uhdm/moire/0241_moire.jpg" alt="Original Image">
+            <span class="cd-image-label" data-type="original">Moire Image</span>
+            
+            <div class="cd-resize-img">
+              <img src="images/uhdm/ours/test_0241_moire.jpg" alt="Modified Image">
+              <span class="cd-image-label" data-type="modified">Our Result</span>
+            </div>
+            
+            <span class="cd-handle cd-first"></span>
+          </figure>
+      
+          
+          <figure class="cd-uhdimage-container">
+            <img src="images/uhdm/moire/0025_moire.jpg" alt="Original Image">
+            <span class="cd-image-label" data-type="original">Moire Image</span>
+            
+            <div class="cd-resize-img">
+              <img src="images/uhdm/ours/test_0025_moire.jpg" alt="Modified Image">
+              <span class="cd-image-label" data-type="modified">Our Result</span>
+            </div>
+            
+            <span class="cd-handle cd-first"></span>
+          </figure>
+      
+      
+          
+
+          <figure class="cd-uhdimage-container">
+            <img src="images/uhdm/moire/0219_moire.jpg" alt="Original Image">
+            <span class="cd-image-label" data-type="original">Moire Image</span>
+            
+            <div class="cd-resize-img">
+              <img src="images/uhdm/ours/test_0219_moire.jpg" alt="Modified Image">
+              <span class="cd-image-label" data-type="modified">Our Result</span>
+            </div>
+            
+            <span class="cd-handle cd-first"></span>
+          </figure>
+      
+      
+          <figure class="cd-uhdimage-container">
+            <img src="images/uhdm/moire/0242_moire.jpg" alt="Original Image">
+            <span class="cd-image-label" data-type="original">Moire Image</span>
+            
+            <div class="cd-resize-img">
+              <img src="images/uhdm/ours/test_0242_moire.jpg" alt="Modified Image">
+              <span class="cd-image-label" data-type="modified">Our Result</span>
+            </div>
+            
+            <span class="cd-handle cd-first"></span>
+          </figure>
+          
+
+          <figure class="cd-uhdimage-container">
+            <img src="images/uhdm/moire/0264_moire.jpg" alt="Original Image">
+            <span class="cd-image-label" data-type="original">Moire Image</span>
+            
+            <div class="cd-resize-img">
+              <img src="images/uhdm/ours/test_0264_moire.jpg" alt="Modified Image">
+              <span class="cd-image-label" data-type="modified">Our Result</span>
+            </div>
+            
+            <span class="cd-handle cd-first"></span>
+          </figure>
+      
+      
+          <figure class="cd-uhdimage-container">
+            <img src="images/uhdm/moire/0288_moire.jpg" alt="Original Image">
+            <span class="cd-image-label" data-type="original">Moire Image</span>
+            
+            <div class="cd-resize-img">
+              <img src="images/uhdm/ours/test_0288_moire.jpg" alt="Modified Image">
+              <span class="cd-image-label" data-type="modified">Our Result</span>
+            </div>
+            
+            <span class="cd-handle cd-first"></span>
+          </figure>
+      
+        
+        </div>
+        
+        <hr/>
+        <p></p>
+        <span class="section">Dataset</span>
+        <span class="page-word">
+        <p>
+          For the training of 4K demoireing models and the evaluation of existing methods, we collect a large-scale ultra-high-definition demoireing dataset (UHDM). We shoot the screen images via different camera views to produce different pattern appearance and combine multiple devices to produce diverse degradation styles (including pattern appearance and global color style), boosting the generalization ability for trained methods. Our dataset contains 5,000 image pairs in total. We randomly split them into 4,500 for training and 500 for testing.
+
+        </p>
+        </span>
+        <img style="margin-top:20px; border-radius:20px; border:5px solid rgba(121, 113, 113, 0.573)" src="images/dataset.png" width="90%" />
+        
+        <p class="caption">Upper left: Our dataset contains diversified scenarios. Upper right: we capture the moire image with a DJI OM 5 smartphone gimbal. Lower: moire
+          images in our dataset show a wide-scale variation
+        </p>
+        
+
+        <hr/>
+        <p></p>
+        <span class="section">Framework</span>
+        <span class="page-word">
+        <p>
+          Based upon our dataset, we conduct a benchmark study on state-of-the-art methods. Our empirical study reveals that most methods are struggling in simultaneously removing moire patterns with a much wider range of scales in 4K images and tolerating the growing demands for computational cost or image fine detail. We attribute their deficiencies to the lack of an effective multi-scale feature extraction strategy (welcome to see our paper for details).
+
+          Existing methods utilize features from different
+          depths to obtain multi-scale representations. However, features at different
+          depths have different levels of semantic information. Thus, they are incapable
+          of representing multi-scale information at the same semantic level, which might
+          provide important cues for boosting the model’s multi-scale modeling capabilities.
+          To this end, we deliver SAM, a module intended to extract multi-scale features
+          within the same semantic level and allow them to interact and be dynamically
+          fused, significantly improving the model’s ability to handle moire patterns with
+          a wide range of scales. SAM incorporates
+          a pyramid context extraction module to effectively and efficiently extract multi-scale features aligned at the same semantic level. Further, a cross-scale dynamic fusion module is developed to selectively fuse multi-scale features where the fusion weights are learned and dynamically adapted to individual images.
+          
+          Equipped with SAM, we can develop an efficient and scale-robust single-stage framework, avoiding complex coarse-to-fine two-stage modeling, as the previous method did in 1080p image demoireing, which suffers from heavy computational cost when applied to 4K images yet is still not sufficient to remove moire patterns.
+
+        </p>
+        </span>
+        <img style="margin-top:20px; border-radius:20px; border:5px solid rgba(121, 113, 113, 0.573)" src="images/network.png" width="90%" />
+
+        <p class="caption">The pipeline of our ESDNet and the proposed semantic-aligned scaleaware module (SAM)
+        </p>
+
+
+      </div>
+    </div>
+
+  
+
+  
+                            
+
+    
+
+
+    <p class="section">&nbsp;</p>
+    <p align="center" class="date">
+      Last updated: July 2022
+
+      <a href="yuxin27g@gmail.com">Contact me: yuxin27g@gmail.com</a>
+    </p>
+    <!-- hitwebcounter Code START -->
+    <a href="https://www.hitwebcounter.com" target="_blank">
+      <img src="https://hitwebcounter.com/counter/counter.php?page=8015915&style=0038&nbdigits=5&type=page&initCount=0" title="Free Counter" Alt="web counter"   border="0" /></a>     
+  
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+tex2jax: {inlineMath: [['$','$']]}
+});
+</script>
+
+
+
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/jquery.mobile.custom.min.js"></script>
+<script src="js/uhdmain.js"></script>
+<script>
+	function open_demo() {
+		document.getElementById('demos').style.display="block";
+		document.getElementById('demo-button').style.display="none";
+	}
+	function close_demo() {
+		document.getElementById('demos').style.display="none";
+		document.getElementById('demo-button').style.display="block";
+	}
+</script>
+</body>
+
+</html>
