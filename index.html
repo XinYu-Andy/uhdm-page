@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>Towards Efficient and Scale-Robust Ultra-High-Definition Image Demoireing</title>
+  <title>Towards Efficient and Scale-Robust Ultra-High-Definition Image Demoiréing</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,700,400italic,700italic" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,700italic,400italic" rel="stylesheet" type="text/css">
@@ -29,7 +29,7 @@
       <div class="container text-white">
         
         <div class="page-heading">
-          <h1>Towards Efficient and Scale-Robust Ultra-High-Definition Image Demoireing (ECCV 2022)</h1>
+          <h1>Towards Efficient and Scale-Robust Ultra-High-Definition Image Demoiréing (ECCV 2022)</h1>
           
           <span class="page-subheading"><p>
             Xin Yu · 
@@ -44,8 +44,8 @@
 
           <span class="page-subheading">
             <a href="https://drive.google.com/drive/folders/1DyA84UqM7zf3CeoEBNmTi_dJ649x2e7e?usp=sharing " target="_Blank" class="btn">Dataset</a>
-            <a href="https://github.com/CVMI-Lab/UHDM.git" class="btn">Code</a>
-            <a href="---" class="btn">Paper (Coming soon)</a>
+            <a href="https://github.com/CVMI-Lab/UHDM.git" target="_Blank" class="btn">Code</a>
+            <a href="https://arxiv.org/abs/2207.09935" target="_Blank" class="btn">Paper</a>
             
             </span>
     
@@ -61,14 +61,14 @@
           When photographing the contents displayed on the digital screen, an inevitable
           frequency aliasing between the camera’s color filter array (CFA) and the screen’s
           LCD subpixel widely exists. The captured images are thus mixed with colorful
-          stripes, named moire patterns, which severely degrade images’ perceptual qualities. Although a plethora of dedicated demoire methods have been proposed in the research community recently, yet is still far from achieving promising results in the real-world scenes.
+          stripes, named moire patterns, which severely degrade images’ perceptual qualities. Although a plethora of dedicated demoiré methods have been proposed in the research community recently, yet is still far from achieving promising results in the real-world scenes.
 
           The key limitation of these methods is that they all only conduct research on low-resolution or synthetic images. However, with the rapid development of mobile devices, modern widely-used mobile phones typically allow users to capture 4K resolution (i.e.,ultra-high-definition) images, and thus the effectiveness of these methods on this practical scenes is not promised. 
           
           In this work, we explore moire pattern removal for ultra-high-definition images.
-          First, we propose the first ultra-high-definition demoireing dataset
+          First, we propose the first ultra-high-definition demoiréing dataset
           (UHDM), which contains 5,000 real-world 4K resolution image pair, and
-          conduct a benchmark study on the current state of the art. Then, we analyze limitations of the state of the art and summarize the key issue of them, i.e., not scale-robust. To address their deficiencies, we deliver a plug-and-play semantic-aligned scale-aware module which helps us to build a frustratingly simple baseline model for tackling 4K moire images. Our framework is easy to implement and fast for inference, achieving state-of-the-art results on four demoireing datasets while being much more lightweight. We hope our investigation could inspire more future research in this more practical setting in image demoireing.
+          conduct a benchmark study on the current state of the art. Then, we analyze limitations of the state of the art and summarize the key issue of them, i.e., not scale-robust. To address their deficiencies, we deliver a plug-and-play semantic-aligned scale-aware module which helps us to build a frustratingly simple baseline model for tackling 4K moire images. Our framework is easy to implement and fast for inference, achieving state-of-the-art results on four demoiréing datasets while being much more lightweight. We hope our investigation could inspire more future research in this more practical setting in image demoiréing.
           
           
         <br />
@@ -79,7 +79,7 @@
       <p></p>
         <span class="section">Visualizations</span>
         <span class="page-word">
-        <p> We show the visual results of our demoireing methods when applied to full 4K resolution images from mobile phones (i.e., 4032x3024~4624x3472) below. It should be noted that the default test setting in our benchmark is processing center-cropped images at a standard 4K resolution (3840x2160). But since our method is lightweight which is tolerant to the full 4K images, we present the results in full 4K scenes here. To play with the demo, click the button in the middle of each image and slide it to the right. For results on other datasets, you are welcome to check our paper, or try our code directly. 
+        <p> We show the visual results of our demoiréing methods when applied to full 4K resolution images from mobile phones (i.e., 4032x3024~4624x3472) below. It should be noted that the default test setting in our benchmark is processing center-cropped images at a standard 4K resolution (3840x2160). But since our method is lightweight which is tolerant to the full 4K images, we present the results in full 4K scenes here. To play with the demo, click the button in the middle of each image and slide it to the right. For results on other datasets, you are welcome to check our paper, or try our code directly. 
           <br />
         </p>
       </span>
@@ -88,7 +88,7 @@
 
           <figure class="cd-uhdimage-container">
             <img src="images/uhdm/moire/0225_moire.jpg" alt="Original Image">
-            <span class="cd-image-label" data-type="original">Moire Image</span>
+            <span class="cd-image-label" data-type="original">Moiré Image</span>
             
             <div class="cd-resize-img">
               <img src="images/uhdm/ours/test_0225_moire.jpg" alt="Modified Image">
@@ -102,7 +102,7 @@
           <figure class="cd-uhdimage-container">
           
             <img src="images/uhdm/moire/0002_moire.jpg" alt="Original Image">
-            <span class="cd-image-label" data-type="original">Moire Image</span>
+            <span class="cd-image-label" data-type="original">Moiré Image</span>
             
             <div class="cd-resize-img">
               <img src="images/uhdm/ours/test_0002_moire.jpg" alt="Modified Image">
@@ -115,7 +115,7 @@
 
           <figure class="cd-uhdimage-container">
             <img src="images/uhdm/moire/0016_moire.jpg" alt="Original Image">
-            <span class="cd-image-label" data-type="original">Moire Image</span>
+            <span class="cd-image-label" data-type="original">Moiré Image</span>
             
             <div class="cd-resize-img">
               <img src="images/uhdm/ours/test_0016_moire.jpg" alt="Modified Image">
@@ -128,7 +128,7 @@
           
           <figure class="cd-uhdimage-container">
             <img src="images/uhdm/moire/0241_moire.jpg" alt="Original Image">
-            <span class="cd-image-label" data-type="original">Moire Image</span>
+            <span class="cd-image-label" data-type="original">Moiré Image</span>
             
             <div class="cd-resize-img">
               <img src="images/uhdm/ours/test_0241_moire.jpg" alt="Modified Image">
@@ -141,7 +141,7 @@
           
           <figure class="cd-uhdimage-container">
             <img src="images/uhdm/moire/0025_moire.jpg" alt="Original Image">
-            <span class="cd-image-label" data-type="original">Moire Image</span>
+            <span class="cd-image-label" data-type="original">Moiré Image</span>
             
             <div class="cd-resize-img">
               <img src="images/uhdm/ours/test_0025_moire.jpg" alt="Modified Image">
@@ -156,7 +156,7 @@
 
           <figure class="cd-uhdimage-container">
             <img src="images/uhdm/moire/0219_moire.jpg" alt="Original Image">
-            <span class="cd-image-label" data-type="original">Moire Image</span>
+            <span class="cd-image-label" data-type="original">Moiré Image</span>
             
             <div class="cd-resize-img">
               <img src="images/uhdm/ours/test_0219_moire.jpg" alt="Modified Image">
@@ -169,7 +169,7 @@
       
           <figure class="cd-uhdimage-container">
             <img src="images/uhdm/moire/0242_moire.jpg" alt="Original Image">
-            <span class="cd-image-label" data-type="original">Moire Image</span>
+            <span class="cd-image-label" data-type="original">Moiré Image</span>
             
             <div class="cd-resize-img">
               <img src="images/uhdm/ours/test_0242_moire.jpg" alt="Modified Image">
@@ -182,7 +182,7 @@
 
           <figure class="cd-uhdimage-container">
             <img src="images/uhdm/moire/0264_moire.jpg" alt="Original Image">
-            <span class="cd-image-label" data-type="original">Moire Image</span>
+            <span class="cd-image-label" data-type="original">Moiré Image</span>
             
             <div class="cd-resize-img">
               <img src="images/uhdm/ours/test_0264_moire.jpg" alt="Modified Image">
@@ -195,7 +195,7 @@
       
           <figure class="cd-uhdimage-container">
             <img src="images/uhdm/moire/0288_moire.jpg" alt="Original Image">
-            <span class="cd-image-label" data-type="original">Moire Image</span>
+            <span class="cd-image-label" data-type="original">Moiré Image</span>
             
             <div class="cd-resize-img">
               <img src="images/uhdm/ours/test_0288_moire.jpg" alt="Modified Image">
@@ -213,7 +213,7 @@
         <span class="section">Dataset</span>
         <span class="page-word">
         <p>
-          For the training of 4K demoireing models and the evaluation of existing methods, we collect a large-scale ultra-high-definition demoireing dataset (UHDM). We shoot the screen images via different camera views to produce different pattern appearance and combine multiple devices to produce diverse degradation styles (including pattern appearance and global color style), boosting the generalization ability for trained methods. Our dataset contains 5,000 image pairs in total. We randomly split them into 4,500 for training and 500 for testing.
+          For the training of 4K demoiréing models and the evaluation of existing methods, we collect a large-scale ultra-high-definition demoiréing dataset (UHDM). We shoot the screen images via different camera views to produce different pattern appearance and combine multiple devices to produce diverse degradation styles (including pattern appearance and global color style), boosting the generalization ability for trained methods. Our dataset contains 5,000 image pairs in total. We randomly split them into 4,500 for training and 500 for testing.
 
         </p>
         </span>
@@ -242,13 +242,13 @@
           a wide range of scales. SAM incorporates
           a pyramid context extraction module to effectively and efficiently extract multi-scale features aligned at the same semantic level. Further, a cross-scale dynamic fusion module is developed to selectively fuse multi-scale features where the fusion weights are learned and dynamically adapted to individual images.
           
-          Equipped with SAM, we can develop an efficient and scale-robust single-stage framework, avoiding complex coarse-to-fine two-stage modeling, as the previous method did in 1080p image demoireing, which suffers from heavy computational cost when applied to 4K images yet is still not sufficient to remove moire patterns.
+          Equipped with SAM, we can develop an efficient and scale-robust single-stage framework, avoiding complex coarse-to-fine two-stage modeling, as the previous method did in 1080p image demoiréing, which suffers from heavy computational cost when applied to 4K images yet is still not sufficient to remove moire patterns.
 
         </p>
         </span>
         <img style="margin-top:20px; border-radius:20px; border:5px solid rgba(121, 113, 113, 0.573)" src="images/network.png" width="90%" />
 
-        <p class="caption">The pipeline of our ESDNet and the proposed semantic-aligned scaleaware module (SAM)
+        <p class="caption">The pipeline of our ESDNet and the proposed semantic-aligned scale-aware module (SAM)
         </p>
 
 
